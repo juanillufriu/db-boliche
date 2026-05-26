@@ -42,51 +42,7 @@ La base de datos se encuentra normalizada en Tercera Forma Normal (3FN):
 
 # DER (Diagrama Entidad Relación)
 
-```mermaid
-erDiagram
-
-    BARRA {
-        int id_barra PK
-        varchar nombre
-        varchar ubicacion
-    }
-
-    PISTA {
-        int id_pista PK
-        varchar nombre
-        int capacidad
-    }
-
-    BEBIDA {
-        int id_bebida PK
-        varchar nombre
-        varchar tipo
-        numeric precio_unitario
-        numeric litros_por_unidad
-        int stock_unidades
-    }
-
-    TICKET {
-        int id_ticket PK
-        timestamp fecha_hora
-        int id_barra FK
-        numeric total
-    }
-
-    DETALLE_TICKET {
-        int id_detalle PK
-        int id_ticket FK
-        int id_bebida FK
-        int cantidad
-        numeric precio_unitario
-        numeric subtotal
-    }
-
-    BARRA ||--o{ TICKET : genera
-    TICKET ||--o{ DETALLE_TICKET : contiene
-    BEBIDA ||--o{ DETALLE_TICKET : vendido_en
-
-```
+[![](https://mermaid.ink/img/pako:eNqVU11v2jAU_SvRfaYoKZSQvAVItYhSoSzbwxQpcuxbsCB25DjTNsp_r0NDEWmQOr_dj3PPucf2AahkCD6gWnCyUaRIRSosc2ZBHAfW4T1oTvScWJxlOVGKWOvlpfAziOffgtgSssgVfs7XOaeEctkOPp4Z1tH3pI-h5JX-GkMDoKQ0wxlhnemzcBYtehfA3LT_1waal_KSff6xCuNobpUKzVZZLbgmivc07LlWsspKqZqmD4lnLZWWdNdWsOrIT6L5Mkx65GtOd6iv5CfRKjRWrtbWC9ItybZSkRv39rj8LFNLTfYd-kWYBE9PYXZTBkMD2uOVjmuFj8tb1ncrlAh9bc-XLa7qvE_---N9fb27k4ezlb6VwgYFGm-g43Lb2Fm6AVBppBnQBdK-q9uQCrPfKBhmKFKAAWwUZ-BrVeMAClQFaUI4OZqC3mJhhjc4RtSuoTkaTEnELymLM0zJerMF_4XsKxPVJSMa2-_60dJQqrmshQZ_5J1GgH-AP-Dfe87QcZzJyB179nRse5MB_DXp6dC5H3uua9uO8-COJscB_DuR2sOp-3B8A8c8LmQ?type=png)](https://mermaid.live/edit#pako:eNqVU11v2jAU_SvRfaYoKZSQvAVItYhSoSzbwxQpcuxbsCB25DjTNsp_r0NDEWmQOr_dj3PPucf2AahkCD6gWnCyUaRIRSosc2ZBHAfW4T1oTvScWJxlOVGKWOvlpfAziOffgtgSssgVfs7XOaeEctkOPp4Z1tH3pI-h5JX-GkMDoKQ0wxlhnemzcBYtehfA3LT_1waal_KSff6xCuNobpUKzVZZLbgmivc07LlWsspKqZqmD4lnLZWWdNdWsOrIT6L5Mkx65GtOd6iv5CfRKjRWrtbWC9ItybZSkRv39rj8LFNLTfYd-kWYBE9PYXZTBkMD2uOVjmuFj8tb1ncrlAh9bc-XLa7qvE_---N9fb27k4ezlb6VwgYFGm-g43Lb2Fm6AVBppBnQBdK-q9uQCrPfKBhmKFKAAWwUZ-BrVeMAClQFaUI4OZqC3mJhhjc4RtSuoTkaTEnELymLM0zJerMF_4XsKxPVJSMa2-_60dJQqrmshQZ_5J1GgH-AP-Dfe87QcZzJyB179nRse5MB_DXp6dC5H3uua9uO8-COJscB_DuR2sOp-3B8A8c8LmQ)
 
 ---
 
