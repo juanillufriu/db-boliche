@@ -79,11 +79,16 @@ CREATE TABLE ticket (
     id_ticket SERIAL PRIMARY KEY,
     fecha_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_barra INTEGER NOT NULL,
+    id_pista INTEGER NOT NULL,
     total NUMERIC(10,2) NOT NULL CHECK (total >= 0),
 
     CONSTRAINT fk_ticket_barra
         FOREIGN KEY (id_barra)
-        REFERENCES barra(id_barra)
+        REFERENCES barra(id_barra),
+
+    CONSTRAINT fk_ticket_pista
+        FOREIGN KEY (id_pista)
+        REFERENCES pista(id_pista)
 );
 
 CREATE TABLE detalle_ticket (
@@ -157,13 +162,18 @@ VALUES
 -- INSERTS DE TICKETS
 -- =========================================
 
-INSERT INTO ticket (fecha_hora, id_barra, total)
+INSERT INTO ticket (
+    fecha_hora,
+    id_barra,
+    id_pista,
+    total
+)
 VALUES
-('2026-05-25 23:10:00', 1, 9500),
-('2026-05-25 23:40:00', 2, 15500),
-('2026-05-26 00:05:00', 3, 12000),
-('2026-05-26 00:20:00', 4, 18000),
-('2026-05-26 01:00:00', 1, 7000);
+('2026-05-25 23:10:00', 1, 1, 9500),
+('2026-05-25 23:40:00', 2, 2, 15500),
+('2026-05-26 00:05:00', 3, 5, 12000),
+('2026-05-26 00:20:00', 4, 3, 18000),
+('2026-05-26 01:00:00', 1, 1, 7000);
 
 -- =========================================
 -- INSERTS DE DETALLE TICKET
@@ -298,12 +308,13 @@ Incluye:
 
 ## Tabla ticket
 
-Representa cada venta realizada en una barra.
+Representa cada venta realizada en el boliche.
 
 Cada ticket:
 
 * Tiene fecha y hora.
 * Pertenece a una barra.
+* Se asocia a una pista.
 * Posee un total.
 
 ## Tabla detalle_ticket
@@ -338,6 +349,7 @@ La solución propuesta permite:
 * Gestionar las ventas del boliche.
 * Emitir tickets.
 * Controlar consumiciones.
+* Analizar consumos por pista.
 * Analizar recaudaciones.
 * Identificar bebidas más vendidas.
 * Estimar reposición de stock.
